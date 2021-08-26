@@ -20,17 +20,17 @@ def scraper_wiki_citations_needed(URL):
 def get_citations_needed_count(URL):
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, 'html.parser')
-    results = soup.find(class_='noprint Inline-Template Template-Fact')
+    results = soup.find_all(class_='noprint Inline-Template Template-Fact')
     print(len(results))
 
 # -------------------- Report Function -------------------- # 
 def get_citations_needed_report(URL):
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, 'html.parser')
-    results = soup.find(class_='noprint Inline-Template Template-Fact')
-    print(results.prettify())
+    results = soup.find_all(class_='noprint Inline-Template Template-Fact')
+    print(results)
     for item in results:
-        print(item.parent.parent.text)
+        print(item.parent.text)
 
 # ------ Function Call ------- #
 scraper_wiki_citations_needed(URL)
